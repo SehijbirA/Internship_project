@@ -12,6 +12,20 @@ def browser_init(context):
     driver_path = ChromeDriverManager().install()
     service = Service(driver_path)
     context.driver = webdriver.Chrome(service=service)
+
+    ### HEADLESS MODE ####
+    #options = webdriver.ChromeOptions()
+    #options.add_argument('headless')
+    #service = Service(ChromeDriverManager().install())
+    #context.driver = webdriver.Chrome(
+    #     options=options,
+    #     service=service
+    #)
+
+    # FIREFOX
+    # service = Service(executable_path='/Users/Sehij/Downloads/geckodriver')
+    # context.driver = webdriver.Firefox(service=service)
+
     context.driver.wait = WebDriverWait(context.driver, 15)
 
     context.driver.maximize_window()
@@ -20,6 +34,14 @@ def browser_init(context):
     context.driver.implicitly_wait(4)
     context.app = Application(context.driver)
 
+ ### HEADLESS MODE ####
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('headless')
+    # service = Service(ChromeDriverManager().install())
+    # context.driver = webdriver.Chrome(
+    #     options=options,
+    #     service=service
+    # )
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
